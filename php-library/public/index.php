@@ -102,17 +102,14 @@ switch (true) {
         $pdo = db();
         $pdo->beginTransaction();
         try {
-            $stmt = $pdo->prepare('SELECT * FROM books WHERE id = ?');
-            $stmt->execute([$bookId]);
-            $book = $stmt->fetch();
-            if (!$book || (int)$book['copies_available'] <= 0) {
+            $update = $pdo->prepare('UPDATE books SET copies_available = copies_available - 1 WHERE id = ? AND copies_available > 0');
+            $update->execute([$bookId]);
+            if ($update->rowCount() !== 1) {
                 throw new RuntimeException('Book not available');
             }
             $due = (new DateTimeImmutable('+14 days'))->format('Y-m-d H:i:s');
             $stmt = $pdo->prepare('INSERT INTO loans (user_id, book_id, due_at) VALUES (?, ?, ?)');
             $stmt->execute([$_SESSION['user_id'], $bookId, $due]);
-            $stmt = $pdo->prepare('UPDATE books SET copies_available = copies_available - 1 WHERE id = ?');
-            $stmt->execute([$bookId]);
             $pdo->commit();
             flash('success', 'Book borrowed. Due in 14 days.');
         } catch (Throwable $e) {
