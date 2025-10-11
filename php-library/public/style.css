@@ -1,0 +1,20 @@
+:root{--bg:#0b1020;--card:#121933;--text:#eef1ff;--muted:#a9b0d9;--accent:#6ea8fe;--danger:#ff6b6b;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
+.container{max-width:960px;margin:2rem auto;padding:0 1rem}
+.site-header{background:rgba(255,255,255,0.02);border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav{display:flex;gap:1rem;align-items:center;padding:0.75rem 1rem}
+.nav a{color:var(--muted);text-decoration:none}
+.nav a.brand{color:var(--text);font-weight:700}
+.nav a:hover{color:var(--accent)}
+.card{background:var(--card);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1rem}
+input,button,select{background:#0e1430;color:var(--text);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.6rem 0.75rem}
+button{cursor:pointer}
+button.primary{background:var(--accent);color:#00122e;border:none}
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{padding:0.5rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.badge{display:inline-block;padding:0.15rem 0.5rem;border-radius:999px;background:#223160;color:var(--muted);font-size:0.8rem}
+.badge.danger{background:#4b1f2a;color:#ffd7d7}
+form .row{display:flex;gap:0.75rem;flex-wrap:wrap}
+form .row>*{flex:1 1 240px}
+.alert{padding:0.75rem 1rem;border-radius:8px;background:#1a223f;border:1px solid rgba(255,255,255,0.08);margin-bottom:1rem}
